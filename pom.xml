@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.chenhao</groupId>
+  <artifactId>chenge_parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>chenge-goods-interface</module>
+  	<module>chenge-user-interface</module>
+  	<module>chenge-goods-service</module>
+  	<module>chenge-user-service</module>
+  	<module>chenge-goods-manger</module>
+  	<module>chenge-goods-manger1</module>
+  	<module>chenge-web</module>
+  	<module>chenge-manger</module>
+  </modules>
+</project>
