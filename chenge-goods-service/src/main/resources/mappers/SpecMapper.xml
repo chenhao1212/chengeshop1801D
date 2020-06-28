@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenhao.goods.dao.SpecMapper">
+	<!-- int addSpec(Spec spec); -->
+	<insert id="addSpec" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into hg_spec(spec_name)  values(#{specName})
+	</insert>
+	<!-- void addSpecOption(SpecOption specOption); -->
+	<insert id="addSpecOption">
+		INSERT INTO hg_spec_option(option_name,spec_id,orders) VALUES(#{optionName},#{specId},#{orders})
+	</insert>
+	<!-- int deleteOptions(Integer[] ids); -->
+	<delete id="deleteOptions">
+		delete from hg_spec_option where spec_id in 
+		<foreach collection="array" separator="," close=")" open="(" item="id">
+			#{id}
+		</foreach>
+	</delete>
+	<!-- int deleteSpec(Integer[] ids); -->
+	<delete id="deleteSpec">
+		delete from hg_spec where id in
+		<foreach collection="array" separator="," close=")" open="(" item="id">
+			#{id}
+		</foreach>
+	</delete>
+	<resultMap type="Spec" id="SpecMap">
+		<id column="id" property="id" />
+		<result column="spec_name" property="specName"/>
+		<collection property="optios" column="id" ofType="SpecOption" select="queryOptionById">
+			<id column="id" property="id"/>
+			<result column="option_name" property="optionName"/>
+			<result column="spec_id" property="specId"/>
+			<result column="orders" property="orders"/>
+		</collection>
+	</resultMap>
+	<select id="queryOptionById" resultType="SpecOption">
+		select * from hg_spec_option where spec_id = #{id}
+	</select>
+	<!-- Spec findById(Integer id); -->
+	<select id="findById" resultMap="SpecMap">
+		select * from hg_spec where id=#{id}
+	</select>
+	<!-- List<Spec> list(Spec spec); -->
+	<select id="list" resultMap="SpecMap">
+		select * from hg_spec 
+		<where>
+			<if test="specName!=null and specName!=''">
+				and spec_name like concat('%',#{specName},'%')
+			</if>
+		</where>
+	</select>
+	<!-- int updateSpec(Spec spec); -->
+	<update id="updateSpec">
+		update hg_spec set spec_name = #{specName} where id=#{id}
+	</update>
+	<!-- void deleteOption(Integer id); -->
+	<delete id="deleteOption">
+		delete from hg_spec_option where spec_id=#{id}
+	</delete>
+</mapper>
