@@ -27,7 +27,7 @@
 					<input id="currentName" name="name">
 					<br>
 					<input type="button" value="修改"  onclick="updateCategory()">
-					<input type="button" id="delCategory" value="删除"  disabled="disabled" onclick="delCategory()">
+					<input type="button" id="delCategorys" value="删除"  disabled="disabled" onclick="delCategory()">
 				</fieldset>
 			</form>
 		</div>
@@ -49,7 +49,7 @@
 					  //用于显示修改和删除的部分
 					  $("#currentName").val(data.text);
 					  $("#currentId").val(data.id)
-					 $("#delCategory").prop("disabled",data.nodes.length>0)
+					 $("#delCategorys").prop("disabled",data.nodes.length>0)
 				  }
 					})
 		})
@@ -87,5 +87,5 @@
 				}
 			})
 		}
-	}          
+	}    
 </script>

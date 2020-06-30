@@ -5,6 +5,7 @@ import java.io.Serializable;
  * 规格属性
  * @author lenovo
  *
+ *
  */
 public class SpecOption implements Serializable{
 	/**

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenhao.goods.dao.SkuMapper">
+	<!-- int update(Sku sku); -->
+	<update id="">
+		update hg_sku 
+		<set>
+			<if test="title!=null and title!=''">
+				title = #{title},
+			</if>
+			<if test="sellPoint!=null and sellPoint!=''">
+				sell_point = #{sellPoint},
+			</if>
+			<if test="price!=null">
+				price = #{price},
+			</if>
+			<if test="stockCount!=null and stockCount!=''">
+				stock_count = #{stockCount},
+			</if>
+			<if test="barcode!=null and barcode!=''">
+				barcode = #{barcode},
+			</if>
+			<if test="image!=null and image!=''">
+				image = #{image},
+			</if>
+			<if test="status!=null">
+				status = #{status},
+			</if>
+			<if test="updateTime!=null">
+				update_time = #{updateTime},
+			</if>
+			<if test="costPrice!=null">
+				cost_price = #{costPrice},
+			</if>
+			<if test="marketPrice!=null">
+				market_price = #{marketPrice},
+			</if>
+			<if test="spuId!=null and spuId!=''">
+				spu_id = #{spuId},
+			</if>
+			<if test="cartThumbnail!=null and cartThumbnail!=''">
+				cart_thumbnail = #{cartThumbnail},
+			</if>
+		</set>
+	</update>
+	<!-- int deleteSpecOption(Integer[] ids); -->
+	
+	<!-- int deleteOneSpecOption(Integer id); -->
+	
+	<!-- int insertSpecOption(Integer id, SpecOption specOption); -->
+	<insert id="insertSpecOption">
+		insert into hg_sku_spec(sku_id,spec_id,spec_option_id) values(#{skuId},#{specId},#{skuId})
+	</insert>
+	<!-- int delete(Integer[] ids); -->
+	<delete id="delete">
+		delete from hg_sku where id in
+		<foreach collection="array" item="id" close=")" open="(" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	<!-- int insert(Sku sku); -->
+	<insert id="insert">		
+		insert into hg_sku(title,sell_point,price,stock_count,barcode,image,status,create_time,update_time,cost_price,market_price,spu_id,cart_thumbnail) 
+		values(#{title},#{sell_point},#{price},#{stockCount},#{barcode},#{image},#{status},#createTime},#{updateTime},#{costPrice},#{marketPrice},#{spuId},#{cartThumbnail})
+	</insert>
+	<!-- List<Sku> list(SpuVo vo);-->
+	
+	<!-- Sku findById(Integer id); -->
+</mapper>

@@ -7,6 +7,7 @@ public interface BrandService {
 	
 	int add(Brand brand);
 	
+	
 	int update(Brand brand);
 	
 	int delete(int []ids);

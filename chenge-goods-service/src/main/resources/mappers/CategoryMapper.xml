@@ -23,4 +23,8 @@
 	<select id="list" resultMap="CategoryMap">
 		select * from hg_category where parent_id=#{id}
 	</select>
+	
+	<select id="findById" resultType="Category">
+		select * from hg_category where id=#{id}
+	</select>
 </mapper>

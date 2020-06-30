@@ -14,5 +14,6 @@ public interface SpecService {
 	//列表
 	PageInfo<Spec> list(SpecOption spec,Integer pageNum,Integer pageSize);
 	
+	
 	Spec getById(Integer id);
 }

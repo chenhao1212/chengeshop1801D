@@ -9,6 +9,7 @@ public interface CategoryService {
 	
 	int update(Category category);
 	
+	
 	int del(Integer id);
 	
 	List<Category> list(Integer parenId);
