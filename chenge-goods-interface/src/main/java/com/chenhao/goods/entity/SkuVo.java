@@ -2,7 +2,7 @@ package com.chenhao.goods.entity;
 
 import java.io.Serializable;
 
-public class SkuVo implements Serializable{
+public class SkuVo extends Sku implements Serializable{
 	/**
 	 * 
 	 * 
@@ -12,8 +12,21 @@ public class SkuVo implements Serializable{
 	private Integer pageNum=1;
 	private Integer pageSize=10;
 	private String orderType="ASC";
+	private Integer minPrice;
+	private Integer maxPrice;
 	private String orderColumn="";
-	
+	public Integer getMinPrice() {
+		return minPrice;
+	}
+	public void setMinPrice(Integer minPrice) {
+		this.minPrice = minPrice;
+	}
+	public Integer getMaxPrice() {
+		return maxPrice;
+	}
+	public void setMaxPrice(Integer maxPrice) {
+		this.maxPrice = maxPrice;
+	}
 	public String getOrderColumn() {
 		return orderColumn;
 	}

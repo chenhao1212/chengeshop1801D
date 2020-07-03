@@ -22,6 +22,8 @@ public interface SpecMapper {
 	int updateSpec(Spec spec);
 
 	void deleteOption(Integer id);
+
+	List<Spec> listAll();
 	
 	
 }

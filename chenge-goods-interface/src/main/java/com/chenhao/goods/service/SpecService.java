@@ -1,5 +1,7 @@
 package com.chenhao.goods.service;
 
+import java.util.List;
+
 import com.chenhao.goods.entity.Spec;
 import com.chenhao.goods.entity.SpecOption;
 import com.github.pagehelper.PageInfo;
@@ -14,6 +16,7 @@ public interface SpecService {
 	//列表
 	PageInfo<Spec> list(SpecOption spec,Integer pageNum,Integer pageSize);
 	
+	List<Spec> listAll();
 	
 	Spec getById(Integer id);
 }

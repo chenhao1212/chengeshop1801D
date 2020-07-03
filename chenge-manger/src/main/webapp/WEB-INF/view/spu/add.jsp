@@ -71,9 +71,9 @@
 		$.post("/category/data",{},function(data){
 			$('#catTree').treeview({
 				  data: data,         // data is not optional
-				  levels: 5,
+				  levels: 2,
 				  onNodeSelected:function(event,data){
-					  if(data.nodes.length){
+					  if(data.nodes.length==0){
 						  $("#catName").val(data.text)
 						  $("#categoryId").val(data.id)
 						  $("#catTree").hide()

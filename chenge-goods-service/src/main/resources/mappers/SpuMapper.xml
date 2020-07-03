@@ -11,22 +11,22 @@
 		update hg_spu 
 		<set>
 			<if test="goodsName!=null and goodsName!=''">
-				goods_name = #{goodsName}
+				goods_name = #{goodsName},
 			</if>
 			<if test="isMarketable!=null and isMarketable!=''">
-				is_marketable = #{isMarketable}
+				is_marketable = #{isMarketable},
 			</if>
 			<if test="brandId!=null">
-				brand_id = #{brandId}
+				brand_id = #{brandId},
 			</if>
 			<if test="caption!=null and caption!=''">
-				caption = #{caption}
+				caption = #{caption},
 			</if>
 			<if test="categoryId!=null ">
-				category_id = #{categoryId}
+				category_id = #{categoryId},
 			</if>
 			<if test="smallPic!=null ">
-				small_pic = #{smallPic}
+				small_pic = #{smallPic},
 			</if>
 		</set>
 		where id=#{id}

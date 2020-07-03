@@ -20,7 +20,7 @@
 	<!-- <import resource="classpath:applicationContext-kafka-consumer.xml"/>  -->
 	<!-- 扫描器   必须修改 -->
 	<context:component-scan
-		base-package="com.chenhao.goods.controller" />
+		base-package="com.chenhao.user.controller" />
 	<!-- 视图解析图 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -49,5 +49,5 @@
 	<dubbo:registry
 		address="zookeeper://192.168.94.128:2181"  />
 	<!-- 配置扫描包的路径 -->	
-	<dubbo:annotation package="com.chenhao.goods.controller"/> 
+	<dubbo:annotation package="com.chenhao.user.controller"/> 
 </beans>

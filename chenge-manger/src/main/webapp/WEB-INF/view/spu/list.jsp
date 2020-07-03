@@ -15,6 +15,9 @@
 	function toAdd(){
 		$("#workContent").load("/spu/toAdd");
 	}
+	function toUpdate(id){
+		$("#workContent").load("/spu/toUpdate",{id:id});
+	}
 </script>
 </head>
 <body>
@@ -74,7 +77,7 @@
 						<td><img src="/pic/${spu.smallPic}" style="width: 50px;height: 50px"> </td>
 						<td>
 							<a href="#" onclick="">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="#" onclick="">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="#" onclick="toUpdate(${spu.id})">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="#" onclick="">查看</a>
 						</td>
 					</Tr>

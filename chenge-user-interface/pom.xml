@@ -42,6 +42,11 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-elasticsearch</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.chenhao</groupId>
+			<artifactId>chenge-goods-interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
   </dependencies>
   <!-- <技术拷贝的位置> -->
 </project>

@@ -57,4 +57,12 @@
 	<delete id="deleteOption">
 		delete from hg_spec_option where spec_id=#{id}
 	</delete>
+	
+	<select id="listAll" resultType="Spec">
+		select * from hg_spec 
+	</select>
+	
+	<select id="listOptionByskuId" resultType="SpecOption">
+		SELECT spec_option_id AS id ,spec_id as specId FROM hg_sku_spec WHERE sku_id=#{value}
+	</select>
 </mapper>

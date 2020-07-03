@@ -54,4 +54,21 @@ public class SpuController {
 		return spuService.add(spu)>0;
 	}
 	
+	@RequestMapping("toUpdate")
+	public String toUpdate(HttpServletRequest request,Spu spu) {
+		Spu spu2 = spuService.getById(spu.getId());
+		request.setAttribute("spu1", spu2);
+		System.out.println(spu2);
+		PageInfo<Brand> pageInfo = brandService.list(new Brand());
+		request.setAttribute("brands", pageInfo.getList());
+		
+		return "spu/update";
+	}
+	@ResponseBody
+	@RequestMapping("update")
+	public boolean update(HttpServletRequest request,Spu spu,@RequestParam("myFile")MultipartFile file) {
+		spu.setSmallPic(fileUtil.upPath(file));
+		return spuService.update(spu)>0;
+	}
+	
 }

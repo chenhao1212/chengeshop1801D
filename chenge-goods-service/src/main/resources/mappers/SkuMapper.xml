@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chenhao.goods.dao.SkuMapper">
 	<!-- int update(Sku sku); -->
-	<update id="">
+	<update id="update">
 		update hg_sku 
 		<set>
 			<if test="title!=null and title!=''">
@@ -14,7 +14,7 @@
 			<if test="price!=null">
 				price = #{price},
 			</if>
-			<if test="stockCount!=null and stockCount!=''">
+			<if test="stockCount!=null ">
 				stock_count = #{stockCount},
 			</if>
 			<if test="barcode!=null and barcode!=''">
@@ -35,21 +35,27 @@
 			<if test="marketPrice!=null">
 				market_price = #{marketPrice},
 			</if>
-			<if test="spuId!=null and spuId!=''">
+			<if test="spuId!=null">
 				spu_id = #{spuId},
 			</if>
 			<if test="cartThumbnail!=null and cartThumbnail!=''">
 				cart_thumbnail = #{cartThumbnail},
 			</if>
 		</set>
+		WHERE id=#{id}
 	</update>
-	<!-- int deleteSpecOption(Integer[] ids); -->
+	<!-- int deleteSpecOption(Integer... ids); -->
+	<delete id="deleteSpecOption">
+		delete from hg_sku_spec where sku_id in 
+		<foreach collection="array" close=")" item="id" open="(" separator=",">
+			#{id}
+		</foreach>
+	</delete>
 	
-	<!-- int deleteOneSpecOption(Integer id); -->
 	
 	<!-- int insertSpecOption(Integer id, SpecOption specOption); -->
-	<insert id="insertSpecOption">
-		insert into hg_sku_spec(sku_id,spec_id,spec_option_id) values(#{skuId},#{specId},#{skuId})
+	<insert id="insertSpecOption" >
+		insert into hg_sku_spec(sku_id,spec_id,spec_option_id) values(#{skuId},#{opt.specId},#{opt.id})
 	</insert>
 	<!-- int delete(Integer[] ids); -->
 	<delete id="delete">
@@ -59,11 +65,40 @@
 		</foreach>
 	</delete>
 	<!-- int insert(Sku sku); -->
-	<insert id="insert">		
+	<insert id="insert"  useGeneratedKeys="true" keyColumn="id" keyProperty="id">		
 		insert into hg_sku(title,sell_point,price,stock_count,barcode,image,status,create_time,update_time,cost_price,market_price,spu_id,cart_thumbnail) 
 		values(#{title},#{sell_point},#{price},#{stockCount},#{barcode},#{image},#{status},#createTime},#{updateTime},#{costPrice},#{marketPrice},#{spuId},#{cartThumbnail})
 	</insert>
 	<!-- List<Sku> list(SpuVo vo);-->
-	
+	<resultMap type="Sku" id="SkuMap">
+		<id column="id" property="id"></id>
+		<association property="spu" column="spu_id" select="com.chenhao.goods.dao.SpuMapper.getById"></association>
+	</resultMap>
+	<select id="list" resultMap="SkuMap">
+		SELECT * FROM hg_sku
+		<where>
+			<if test="orderColumn!=null and orderColumn!=''">
+				AND (title LIKE CONCAT('%',#{orderColumn},'%') OR sell_point  LIKE CONCAT('%',#{orderColumn},'%') )
+			</if>
+			<if test="minPrice!=null and minPrice!=0 ">
+				AND price &gt;= #{minPrice}
+			</if>
+			<if test="maxPrice!=null and maxPrice!=0 ">
+				AND price &lt;= #{maxPrice}
+			</if>
+		</where>
+		ORDER BY id DESC
+	</select>
+	<resultMap type="sku" id="SkuMapDetail" extends="SkuMap">
+		<collection property="options" column="id" select="com.chenhao.goods.dao.SpecMapper.listOptionByskuId"></collection>
+	</resultMap>
 	<!-- Sku findById(Integer id); -->
+	<select id="findById" resultMap="SkuMapDetail">
+		SELECT * FROM hg_sku WHERE id=#{value}
+	</select>
+	
+	<!-- List<Sku> ListBySpuId(int spuId); -->
+	<select id="ListBySpuId" resultMap="SkuMapDetail2">
+		SELECT * FROM hg_sku WHERE spu_id=#{value}
+	</select>
 </mapper>

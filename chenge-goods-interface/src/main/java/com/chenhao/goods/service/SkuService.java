@@ -1,8 +1,9 @@
 package com.chenhao.goods.service;
 
+import java.util.List;
+
 import com.chenhao.goods.entity.Sku;
-import com.chenhao.goods.entity.Spu;
-import com.chenhao.goods.entity.SpuVo;
+import com.chenhao.goods.entity.SkuVo;
 import com.github.pagehelper.PageInfo;
 
 public interface SkuService {
@@ -10,10 +11,13 @@ public interface SkuService {
 	
 	Integer update(Sku sku);
 	
-	
 	Integer delete(Integer []ids);
 	
-	PageInfo<Sku> list(SpuVo vo);
+	PageInfo<Sku> list(SkuVo vo);
 	
 	Sku getById(Integer id);
+	
+	// 根据spu 获取sku的集合，同时包含规格详情
+	List<Sku> listDetailBySpu(int spuId);
+	
 }

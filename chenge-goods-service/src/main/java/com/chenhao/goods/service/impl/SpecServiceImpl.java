@@ -1,5 +1,7 @@
 package com.chenhao.goods.service.impl;
 
+import java.util.List;
+
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,6 +61,12 @@ public class SpecServiceImpl implements SpecService{
 	public Spec getById(Integer id) {
 		// TODO Auto-generated method stub
 		return mapper.findById(id);
+	}
+
+	@Override
+	public List<Spec> listAll() {
+		// TODO Auto-generated method stub
+		return mapper.listAll();
 	}
 
 }
