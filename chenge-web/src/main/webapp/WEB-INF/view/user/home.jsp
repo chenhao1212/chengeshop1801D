@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title>豪哥商城后台管理系统</title>
+    <title>陈哥商城后台管理系统</title>
 
     <link rel="canonical" href="https://v4.bootcss.com/docs/examples/dashboard/">
 
@@ -16,8 +16,6 @@
 <link href="${pageContext.request.contextPath}/resource/bootstrap4/css/bootstrap.css" rel="stylesheet" >
     <!-- Favicons -->
 <meta name="theme-color" content="#563d7c">
-
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -63,7 +61,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" toggle-data='/spec/list'>
+            <a class="nav-link" href="javascript:void(0)" toggle-data='./orderlist?page=1'>
               	订单
             </a>
           </li>
@@ -109,7 +107,7 @@
         </div>
       </div>     
       <div class="table-responsive" id="workContent">
-      			工作内容区域
+      		工作内容区域
       </div>
     </main>
   </div>
@@ -120,7 +118,6 @@
 <script src="/resource/jquery/jquery-3.4.1.js" ></script>
 <script type="text/javascript">
 	$(".nav-link").click(function(){
-		
 		var url = $(this).attr('toggle-data');
 		console.log("url is " + url);
 		$("#workContent").load(url);

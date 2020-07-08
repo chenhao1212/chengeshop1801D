@@ -47,13 +47,11 @@ public class SpecController {
 		}
 		return specService.delete(id)>0;
 	}
+	
 	@RequestMapping("list")
 	public String list(HttpServletRequest request,SpecOption option,@RequestParam(defaultValue = "1")Integer pageNum,@RequestParam(defaultValue = "10")Integer pageSize) {
 		PageInfo<Spec> info = specService.list(option, pageNum, pageSize);
 		request.setAttribute("pageInfo", info);
-		for (Spec s : info.getList()) {
-			System.out.println(s);
-		}
 		return "spec/list";
 	}
 	

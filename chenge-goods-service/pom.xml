@@ -7,6 +7,12 @@
   </parent>
   <artifactId>chenge-goods-service</artifactId>
   <dependencies>
+   <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.62</version>
+</dependency>
   	<dependency>
   		<groupId>com.chenhao</groupId>
   		<artifactId>chenge-goods-interface</artifactId>

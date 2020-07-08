@@ -25,7 +25,14 @@ public interface CartService {
 	
 	List<Cart> ListByIds(int[] ids);
 	
-	
+
+	/**
+	 * 根据购物车id 生成订单
+	 * @param cartIds
+	 * @param uid
+	 * @return
+	 */
+	int createOrder(int[] cartIds, String address ,Integer uid);
 	
 
 }

@@ -2,7 +2,9 @@ package com.chenhao.goods.service.impl;
 
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 
+import com.alibaba.fastjson.JSON;
 import com.chenhao.goods.dao.SpuMapper;
 import com.chenhao.goods.entity.Spu;
 import com.chenhao.goods.entity.SpuVo;
@@ -14,11 +16,20 @@ import com.github.pagehelper.PageInfo;
 public class SpuServiceImpl implements SpuService{
 	@Autowired
 	private SpuMapper mapper;
-	
+	@Autowired
+	KafkaTemplate<String , String> kaTemplate;
 	
 	@Override
 	public Integer add(Spu spu) {
-		return mapper.add(spu);
+		int r= mapper.add(spu);
+		if(r>0) {
+			int spuId= spu.getId();
+			// 
+			Spu spu2 = mapper.getById(spuId);
+			String spuJson = JSON.toJSONString(spu2);
+			kaTemplate.send("hgspu", "addspu",spuJson);
+		}
+		return r;
 	}
 
 	@Override
@@ -28,7 +39,12 @@ public class SpuServiceImpl implements SpuService{
 
 	@Override
 	public Integer delete(Integer[] ids) {
-		return mapper.delete(ids);
+		int n =  mapper.delete(ids);
+		if(n>0) {
+			String delIdsStr = JSON.toJSONString(ids);
+			kaTemplate.send("hgspu", "delspu",delIdsStr);
+		}
+		return n;
 	}
 	
 	@Override

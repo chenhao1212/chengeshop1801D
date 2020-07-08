@@ -96,7 +96,13 @@
 	<select id="findById" resultMap="SkuMapDetail">
 		SELECT * FROM hg_sku WHERE id=#{value}
 	</select>
+	<select id="listOptionByskuId" resultType="SpecOption">
+		SELECT spec_option_id AS id ,spec_id as specId FROM hg_sku_spec WHERE sku_id=#{value}
+	</select>
 	
+	<resultMap type="Sku" id="SkuMapDetail2" extends="SkuMap">
+		<collection property="options" column="id" select="com.chenhao.goods.dao.SpecMapper.listOptionByskuId2"></collection>
+	</resultMap>
 	<!-- List<Sku> ListBySpuId(int spuId); -->
 	<select id="ListBySpuId" resultMap="SkuMapDetail2">
 		SELECT * FROM hg_sku WHERE spu_id=#{value}
